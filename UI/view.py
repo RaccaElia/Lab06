@@ -6,9 +6,9 @@ class View(ft.UserControl):
         super().__init__()
         # page stuff
         self._page = page
-        self._page.title = "Template application using MVC and DAO"
+        self._page.title = "Analisi vendite"
         self._page.horizontal_alignment = 'CENTER'
-        self._page.theme_mode = ft.ThemeMode.DARK
+        self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
         # graphical elements
@@ -20,7 +20,7 @@ class View(ft.UserControl):
 
     def load_interface(self):
         # title
-        self._title = ft.Text("Hello World", color="blue", size=24)
+        self._title = ft.Text("Analizza Vendite", color="blue", size=24)
         self._page.controls.append(self._title)
 
         #ROW with some controls
@@ -33,9 +33,17 @@ class View(ft.UserControl):
 
         # button for the "hello" reply
         self.btn_hello = ft.ElevatedButton(text="Hello", on_click=self._controller.handle_hello)
-        row1 = ft.Row([self.txt_name, self.btn_hello],
-                      alignment=ft.MainAxisAlignment.CENTER)
+
+        self.ddAnno = ft.Dropdown(label="anno", options=self._controller.getAnni())
+        self.ddBrand = ft.Dropdown(label="brand", options=self._controller.getBrand())
+        self.ddRetailer = ft.Dropdown(label="retailer", options=self._controller.getRetailer())
+        row1 = ft.Row([self.ddAnno, self.ddBrand, self.ddRetailer])
         self._page.controls.append(row1)
+
+        self.btnTop = ft.ElevatedButton(text="Top vendite", on_click=self._controller.handleTopVendite)
+        self.btnAnalizza = ft.ElevatedButton(text="Analizza vendite", on_click=self._controller.handleAnalizzaVendite)
+        row2 = ft.Row([self.btnTop, self.btnAnalizza], alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row2)
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
