@@ -49,7 +49,15 @@ class Controller:
         self._view.update_page()
 
     def handleAnalizzaVendite(self, e):
-        pass
+        analisi = self._model.analizza_vendite(self._view.ddAnno.value, self._view.ddBrand.value, self._view.ddRetailer.value)[0]
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text(f"Statistiche vendite:"))
+        self._view.txt_result.controls.append(ft.Text(f"Giro d'affari: {analisi["ricavi"]}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero vendite: {analisi["vendite"]}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero retailers coinvolti: {analisi["venditori"]}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero prodotti coinvolti: {analisi["prodotti"]}"))
+        self._view.update_page()
+
 
     def read_retailer(self, e):
         retailer = e.control.data

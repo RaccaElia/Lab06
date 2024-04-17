@@ -33,3 +33,13 @@ class Model:
         if retailer=="Nessun filtro" or retailer=="" or retailer==None:
             return DAO.top_vendite(anno, brand, None)
         return DAO.top_vendite(anno, brand, int(retailer))
+
+    def analizza_vendite(self, anno, brand, retailer):
+        if anno=="Nessun filtro" or anno=="":
+            anno = None
+        if brand=="Nessun filtro" or brand=="":
+            brand = None
+        if retailer=="Nessun filtro" or retailer=="" or retailer==None:
+            return DAO.analizza_vendite(anno, brand, None)
+        return DAO.analizza_vendite(anno, brand, int(retailer))
+

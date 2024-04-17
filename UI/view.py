@@ -37,7 +37,7 @@ class View(ft.UserControl):
         self.ddAnno = ft.Dropdown(label="anno", options=self._controller.getAnni())
         self.ddBrand = ft.Dropdown(label="brand", options=self._controller.getBrand())
         self.ddRetailer = ft.Dropdown(label="retailer", options=self._controller.getRetailer())
-        row1 = ft.Row([self.ddAnno, self.ddBrand, self.ddRetailer])
+        row1 = ft.Row([self.ddAnno, self.ddBrand, self.ddRetailer], alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
         self.btnTop = ft.ElevatedButton(text="Top vendite", on_click=self._controller.handleTopVendite)
